@@ -1,0 +1,1 @@
+databricks clusters create --json @./clusters/my_cluster.json

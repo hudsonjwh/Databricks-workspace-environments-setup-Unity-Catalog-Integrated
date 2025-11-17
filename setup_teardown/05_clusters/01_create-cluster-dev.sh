@@ -1,4 +1,8 @@
-{
+# 01_create-cluster-dev.sh
+
+echo "Now creating default All-Purpose cluster for workspace"
+
+databricks clusters create --json '{
     "cluster_name": "my_cluster",
     "spark_version": "15.4.x-scala2.12",
     "azure_attributes": {
@@ -16,4 +20,6 @@
     "is_single_node": true,
     "num_workers": 0,
     "apply_policy_default_values": false
-}
+}' --profile DEFAULT
+
+echo "Finished creating the dev cluster."

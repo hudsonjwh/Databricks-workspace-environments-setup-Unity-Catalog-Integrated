@@ -1,4 +1,5 @@
-# dbricks-test.sh
+# 02_databricks-test.sh
+# creates the test workspace and associates an az login profile for it (test)
 
 # Define variables for the workspace
 SUBSCRIPTION="DATABRICKS-PERSONAL"
@@ -37,11 +38,4 @@ echo "Workspace URL: $WORKSPACE_URL"
 
 databricks auth login --host "$WORKSPACE_URL" --profile "$PROFILE"
 
-METASTORE_INFO=$(databricks metastores list -o json)
-METASTORE_ID=$(echo "$METASTORE_INFO" | jq -r '.[0].metastore_id')
-
-databricks metastores assign $WORKSPACE_ID $METASTORE_ID $DEFAULT_CATALOG_NAME
-
-databricks catalogs create "$CATALOG_NAME"
-
-databricks clusters create --json @./clusters/my_cluster.json --profile "$PROFILE"
+echo "Finished creating the test databricks workspace."
